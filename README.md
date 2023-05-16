@@ -1,2 +1,4 @@
 # clash-rules
-clash-rules
+
+clash rule for subconverter
+
