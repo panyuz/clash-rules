@@ -41,7 +41,7 @@ jobs:
           echo "内容: iCloud 域名列表" > icloud.txt
           echo "来源: https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt" >> icloud.txt
           echo "时间: $(date +%Y%m%d%H%M)" >> icloud.txt
-          curl -sSL ${custom_icloud} | grep -E "^(full|domain):" | awk -F ':' '{printf "DOMAIN-SUFFIX,%s\n", $2}'" >> icloud.txt
+          curl -sSL ${custom_icloud} | grep -E "^(full|domain):" | awk -F ':' '{printf "DOMAIN-SUFFIX,%s\n", $2}' >> icloud.txt
 
       - name: Move files to publish directory
         run: |
