@@ -5,10 +5,9 @@
 ## 说明
 
 本项目规则集（RULE-SET）的数据主要来源于项目:
+- [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
 - [@Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat) 
 - [@v2fly/domain-list-community](https://github.com/v2fly/domain-list-community)
-- [`Apple`](https://github.com/Loyalsoldier/clash-rules/blob/release/apple.txt)
-- [`Google`](https://github.com/Loyalsoldier/clash-rules/blob/release/google.txt) 
 - [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [@17mon/china_ip_list](https://github.com/17mon/china_ip_list)
 
