@@ -125,6 +125,16 @@ jobs:
           echo "# 时间: $(date +%Y%m%d%H%M)" >> lancidr.txt
           curl -sSL ${lan_cidr} | perl -ne '/(.+\/\d+)/ && print "IP-CIDR,$1,no-resolve\n"' >> lancidr.txt
 
+      - name: Generate proxy-uniq.txt file
+        run: |
+          echo "# 内容: 去重后的代理规则集合" > proxy-uniq.txt
+          echo "# 来源: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt" >> proxy-uniq.txt
+          echo "# 来源: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt" >> proxy-uniq.txt
+          echo "# 来源: https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt" >> proxy-uniq.txt
+          echo "# 来源: https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/tld-!cn.txt" >> proxy-uniq.txt
+          echo "# 时间: $(date +%Y%m%d%H%M)" >> proxy-uniq.txt
+          cat proxy.txt gfw.txt telegram.txt tld-not-cn.txt | grep -Ev "^#" | sort | uniq >> proxy-uniq.txt
+
       - name: Move files to publish directory
         run: |
           mkdir -p publish
