@@ -11,7 +11,7 @@
 - [@felixonmars/dnsmasq-china-list](https://github.com/felixonmars/dnsmasq-china-list)
 - [@17mon/china_ip_list](https://github.com/17mon/china_ip_list)
 
-本项目 GitHub Actions 主要参考 [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) 的 [配置文件](https://github.com/Loyalsoldier/clash-rules/actions/runs/4997317222/workflow)
+本项目 GitHub Actions 主要参考 [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) 的 Action 文件
 
 ## 规则文件列表
 
