@@ -20,7 +20,6 @@
 | 直连 | [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt |
 | 直连 | [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt |
 | 直连 | [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt |
-| 直连 | [需要直连的常见软件列表 applications.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt |
 | 直连 | [私有网络专用域名列表 private.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt |
 | 直连 | [Apple 在中国大陆可直连的域名列表 apple.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt |
 | 直连 | [Google 在中国大陆可直连的域名列表 google.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt |
