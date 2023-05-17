@@ -31,10 +31,16 @@
 | 代理 | [Telegram 使用的 IP 地址列表 telegramcidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt |
 | REJECT | [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt |
 
-
 无法访问 `raw.githubusercontent.com` 域名的情况下可在文件链接前面加上 `https://ghproxy.com/`
 
 以例 [direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) 为例：`https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt`
+
+## 规则重复
+
+规则集合是从各个开源项目中搜集而来，会导致生成的 clash 配置文件有重复的规则。我用 Github Action 生成了去重规则列表：
+
+| 建议 | 文件 | 国内访问链接 |
+| 代理 | [去重代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt |
 
 ## 使用方式
 
