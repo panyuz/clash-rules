@@ -33,6 +33,11 @@
 
 ## 使用方式
 
+```
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt
+ruleset=🚀 节点选择,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt
+```
+
 ## 致谢
 
 - [@Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
