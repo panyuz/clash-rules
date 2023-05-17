@@ -31,7 +31,7 @@
 | REJECT | [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt |
 |     | [iCloud 域名列表 icloud.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt |
 
-无法访问 `raw.githubusercontent.com` 域名的可以在文件链接前面加上 `https://ghproxy.com/`
+无法访问 `raw.githubusercontent.com` 域名的情况下可在文件链接前面加上 `https://ghproxy.com/`
 
 以例 [direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) 为例：`https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt`
 
