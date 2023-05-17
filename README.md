@@ -27,8 +27,10 @@
 - [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt)
 - [需要直连的常见软件列表 applications.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt)
 
-*无法访问 raw.githubusercontent.com 域名的可以在文件链接前面加上 https://ghproxy.com/。*
-*例如：https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt -> https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt*
+无法访问 raw.githubusercontent.com 域名的可以在文件链接前面加上 https://ghproxy.com/。
+
+以 https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt 为例：
+https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt*
 
 ## 使用方式
 
