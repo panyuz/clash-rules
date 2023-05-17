@@ -13,19 +13,19 @@
 
 ## 规则文件列表
 
-- 直连域名列表 direct.txt
-- 代理域名列表 proxy.txt
-- 广告域名列表 reject.txt
-- 私有网络专用域名列表 private.txt
+- [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt)
+- [代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt)
+- [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt)
+- [私有网络专用域名列表 private.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt)
 - [Apple 在中国大陆可直连的域名列表 apple.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt)
-- iCloud 域名列表 icloud.txt
-- Google 在中国大陆可直连的域名列表 google.txt
-- GFWList 域名列表 gfw.txt
-- 非中国大陆使用的顶级域名列表 tld-not-cn.txt
-- Telegram 使用的 IP 地址列表 telegramcidr.txt
-- 局域网 IP 及保留 IP 地址列表 lancidr.txt
-- 中国大陆 IP 地址列表 cncidr.txt
-- 需要直连的常见软件列表 applications.txt
+- [iCloud 域名列表 icloud.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt)
+- [Google 在中国大陆可直连的域名列表 google.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt)
+- [GFWList 域名列表 gfw.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt)
+- [非中国大陆使用的顶级域名列表 tld-not-cn.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/tld-not-cn.txt)
+- [Telegram 使用的 IP 地址列表 telegramcidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt)
+- [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt)
+- [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt)
+- [需要直连的常见软件列表 applications.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt)
 
 ## 使用方式
 
