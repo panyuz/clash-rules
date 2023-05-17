@@ -38,9 +38,92 @@
 
 ## 使用方式
 
+前提是在本地搭建好 subconverter 服务，搭建教程见 [subconverter-docker](https://github.com/tindy2013/subconverter/blob/master/README-docker.md)
+
+``` bash
+curl -sSL "http://127.0.0.1:25500/sub?target=clash&new_name=true&url=<urlencode 后的订阅链接>&config=<urlencode 后的外部配置文件链接>" > config.yaml
 ```
+
+以 [external.ini](https://raw.githubusercontent.com/gitduk/clash-rules/main/external.ini) 文件为例：
+```
+curl -sSL "http://127.0.0.1:25500/sub?target=clash&new_name=true&url=<urlencode 后的订阅链接>&config=https%3A%2F%2Fghproxy.com%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fgitduk%2Fclash-rules%2Fmain%2Fexternal.ini" > config.yaml
+```
+
+外部配置文件示例：
+```
+[custom]
+
+; 代理组
+custom_proxy_group=🚀 节点选择`select`[]🔰 手动切换`[]♻️ 自动选择`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇸🇬 狮城`[]🇯🇵 日本`[]🇺🇲 美国`[]🇰🇷 韩国`[]DIRECT
+custom_proxy_group=🔰 手动切换`select`.*
+custom_proxy_group=♻️ 自动选择`url-test`.*`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🎯 全球直连`select`[]DIRECT`[]🚀 节点选择`[]🔰 手动切换`[]♻️ 自动选择
+custom_proxy_group=⛔️ 广告拦截`select`[]REJECT`[]DIRECT
+custom_proxy_group=🐟 漏网之鱼`select`[]🚀 节点选择`[]🔰 手动切换`[]♻️ 自动选择`[]DIRECT`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇸🇬 狮城`[]🇯🇵 日本`[]🇺🇲 美国`[]🇰🇷 韩国
+
+; 代理组-基于服务
+custom_proxy_group=💬 OpenAi`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇸🇬 狮城`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇯🇵 日本`[]🇺🇲 美国`[]🇰🇷 韩国`[]🔰 手动切换
+custom_proxy_group=🌍 国外媒体`select`[]🚀 节点选择`[]♻️ 自动选择`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇸🇬 狮城`[]🇯🇵 日本`[]🇺🇲 美国`[]🇰🇷 韩国`[]🔰 手动切换`[]DIRECT
+custom_proxy_group=🌏 国内媒体`select`[]DIRECT`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇸🇬 狮城`[]🇯🇵 日本`[]🔰 手动切换
+custom_proxy_group=Ⓜ 微软服务`select`[]DIRECT`[]🚀 节点选择`[]🇺🇲 美国`[]🇭🇰 香港`[]🇹🇼 台湾`[]🇸🇬 狮城`[]🇯🇵 日本`[]🇰🇷 韩国`[]🔰 手动切换
+
+; 代理组-基于地域
+custom_proxy_group=🇭🇰 香港`url-test`(港|HK|Hong Kong)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇹🇼 台湾`url-test`(台|新北|彰化|TW|Taiwan)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇲🇴 澳门`url-test`(澳门|CTM|MO|Macao)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇸🇬 狮城`url-test`(新加坡|坡|狮城|SG|Singapore)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇯🇵 日本`url-test`(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|[^-]日|JP|Japan)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇺🇲 美国`url-test`(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)`http://www.gstatic.com/generate_204`300,,150
+custom_proxy_group=🇬🇧 英国`url-test`(英国|英|伦敦|UK|England|UnitedKingdom)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇫🇷 法国`url-test`(法国|巴黎|France|FR)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇩🇪 德国`url-test`(德国|法兰克福|德|DE|Germany)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇰🇷 韩国`url-test`(韩国|韩|首尔|韓|KR|Korea|KOR)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇹🇭 泰国`url-test`(泰国|曼谷|TH|Thailand)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇮🇳 印度`url-test`(印度|孟买|India)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇰🇵 朝鲜`url-test`(朝鲜|KP)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇻🇳 越南`url-test`(越南|VN)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇿🇦 南非`url-test`(南非|ZA)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇳🇱 荷兰`url-test`(荷兰|阿姆斯特丹|NL|Netherlands)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇩🇰 丹麦`url-test`(丹麦)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇵🇱 波兰`url-test`(波兰)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇵🇭 菲律宾`url-test`(菲律宾|PH|Philippines)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇷🇺 俄罗斯`url-test`(俄罗斯|伯力|莫斯科|圣彼得堡|西伯利亚|新西伯利亚|京俄|杭俄|RU|Russia)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇹🇷 土耳其`url-test`(土耳其|伊斯坦布尔|TR|Turkey)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇨🇦 加拿大`url-test`(加拿大|蒙特利尔|温哥华|楓葉|枫叶|Canada)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇮🇹 意大利`url-test`(意大利|米兰)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇺🇦 乌克兰`url-test`(乌克兰)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇦🇷 阿根廷`url-test`(阿根廷)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇦🇺 澳大利亚`url-test`(澳大利亚|悉尼|AU|Australia|Sydney)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇲🇾 马来西亚`url-test`(马来西亚|MY|Malaysia)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇷🇴 罗马尼亚`url-test`(罗马尼亚|RO)`http://www.gstatic.com/generate_204`300,,50
+custom_proxy_group=🇵🇰 巴基斯坦`url-test`(巴基斯坦)`http://www.gstatic.com/generate_204`300,,50
+
+; 规则集-直连
 ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt
+ruleset=🎯 全球直连,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt
+ruleset=🎯 全球直连,[]GEOIP,CN
+
+; 规则集-广告
+ruleset=⛔️ 广告拦截,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt
+
+; 规则集-代理
 ruleset=🚀 节点选择,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt
+ruleset=🚀 节点选择,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt
+ruleset=🚀 节点选择,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/tld-not-cn.txt
+ruleset=🚀 节点选择,https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt
+
+; 未匹配
+ruleset=🐟 漏网之鱼,[]FINAL
+
+enable_rule_generator=true
+overwrite_original_rules=true
+exclude_remarks=(IEPL)
 ```
 具体请查看 [subconverter 外部配置](https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E5%A4%96%E9%83%A8%E9%85%8D%E7%BD%AE) 相关内容。
 
