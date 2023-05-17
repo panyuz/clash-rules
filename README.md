@@ -46,7 +46,7 @@ curl -sSL "http://127.0.0.1:25500/sub?target=clash&new_name=true&url=<urlencode 
 
 以 [external.ini](https://raw.githubusercontent.com/gitduk/clash-rules/main/external.ini) 文件为例：
 ```
-curl -sSL "http://127.0.0.1:25500/sub?target=clash&new_name=true&url=<urlencode 后的订阅链接>&config=https%3A%2F%2Fghproxy.com%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fgitduk%2Fclash-rules%2Fmain%2Fexternal.ini" > config.yaml
+curl -sSL "http://127.0.0.1:25500/sub?target=clash&url=<urlencode 后的订阅链接>&config=https%3A%2F%2Fghproxy.com%2Fhttps%3A%2F%2Fraw.githubusercontent.com%2Fgitduk%2Fclash-rules%2Fmain%2Fexternal.ini" > config.yaml
 ```
 
 外部配置文件示例：
