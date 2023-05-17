@@ -29,8 +29,7 @@
 
 无法访问 raw.githubusercontent.com 域名的可以在文件链接前面加上 https://ghproxy.com/。
 
-以 https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt 为例：
-https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt*
+https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt => https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt*
 
 ## 使用方式
 
