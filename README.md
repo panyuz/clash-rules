@@ -12,8 +12,10 @@
 - [@17mon/china_ip_list](https://github.com/17mon/china_ip_list)
 
 ## 规则文件列表
+| 代理组 | 文件 |
+| --- | --- |
+| 直连 | [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) |
 
-- [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt)
 - [代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt)
 - [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt)
 - [私有网络专用域名列表 private.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt)
