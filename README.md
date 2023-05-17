@@ -37,10 +37,12 @@
 
 ## 规则重复
 
-规则集合是从各个开源项目中搜集而来，会导致生成的 clash 配置文件有重复的规则。我用 Github Action 生成了去重规则列表：
+规则集合是从各个开源项目中搜集而来，会导致生成的 clash 配置文件有重复的规则。于是有了去重规则列表：
 
 | 建议 | 文件 | 国内访问链接 |
-| 代理 | [去重代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt |
+| :---: | --- | --- |
+| 代理 | [去重代理域名列表 proxy-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt |
+| 直连 | [去重直连域名列表 direct-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt |
 
 ## 使用方式
 
