@@ -18,7 +18,7 @@
 - 广告域名列表 reject.txt
 - 私有网络专用域名列表 private.txt
 - Apple 在中国大陆可直连的域名列表 apple.txt
-https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt
+ https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt
 - iCloud 域名列表 icloud.txt
 - Google 在中国大陆可直连的域名列表 google.txt
 - GFWList 域名列表 gfw.txt
