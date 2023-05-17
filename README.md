@@ -15,21 +15,21 @@
 
 ## 规则文件列表
 
-| 建议 | 文件 |
-| :---: | --- |
-| 直连 | [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) |
-| 直连 | [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt) |
-| 直连 | [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt) |
-| 直连 | [需要直连的常见软件列表 applications.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt) |
-| 直连 | [私有网络专用域名列表 private.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt) |
-| 直连 | [Apple 在中国大陆可直连的域名列表 apple.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt) |
-| 直连 | [Google 在中国大陆可直连的域名列表 google.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt) |
-| 代理 | [代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt) |
-| 代理 | [GFWList 域名列表 gfw.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt) |
-| 代理 | [非中国大陆使用的顶级域名列表 tld-not-cn.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/tld-not-cn.txt) |
-| 代理 | [Telegram 使用的 IP 地址列表 telegramcidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt) |
-| REJECT | [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt) |
-|     | [iCloud 域名列表 icloud.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt) |
+| 建议 | 文件 | 国内访问链接 |
+| :---: | --- | --- |
+| 直连 | [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt |
+| 直连 | [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt |
+| 直连 | [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt |
+| 直连 | [需要直连的常见软件列表 applications.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/applications.txt |
+| 直连 | [私有网络专用域名列表 private.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/private.txt |
+| 直连 | [Apple 在中国大陆可直连的域名列表 apple.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt |
+| 直连 | [Google 在中国大陆可直连的域名列表 google.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt |
+| 代理 | [代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt |
+| 代理 | [GFWList 域名列表 gfw.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt |
+| 代理 | [非中国大陆使用的顶级域名列表 tld-not-cn.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/tld-not-cn.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/tld-not-cn.txt |
+| 代理 | [Telegram 使用的 IP 地址列表 telegramcidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/telegramcidr.txt |
+| REJECT | [广告域名列表 reject.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject.txt |
+|     | [iCloud 域名列表 icloud.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt |
 
 无法访问 `raw.githubusercontent.com` 域名的可以在文件链接前面加上 `https://ghproxy.com/`
 
