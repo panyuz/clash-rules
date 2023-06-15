@@ -38,101 +38,55 @@ jobs:
         with:
           ref: hidden
 
-      - name: Generate icloud.txt file
+      - name: Generate txt file
         run: |
-          echo "# 内容: iCloud 域名列表" > icloud.txt
-          echo "# 来源: ${custom_icloud}" >> icloud.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> icloud.txt
-          curl -sSL ${custom_icloud} | grep -E "^(full|domain):" | awk -F ':' '{printf "DOMAIN-SUFFIX,%s\n", $2}' >> icloud.txt
-          echo ${{ secrets.TOKEN }}
-
-      - name: Generate google.txt file
-        run: |
-          echo "# 内容: Google 在中国大陆可直连的域名列表" > google.txt
-          echo "# 来源: ${felixonmars_google}" >> google.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> google.txt
-          curl -sSL ${felixonmars_google} | perl -ne '/^server=\/([^\/]+)\// && print "DOMAIN-SUFFIX,$1\n"' >> google.txt
-
-      - name: Generate apple.txt file
-        run: |
-          echo "# 内容: Apple 在中国大陆可直连的域名列表" > apple.txt
-          echo "# 来源: ${felixonmars_apple}" >> apple.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> apple.txt
-          curl -sSL ${felixonmars_apple} | perl -ne '/^server=\/([^\/]+)\// && print "DOMAIN-SUFFIX,$1\n"' >> apple.txt
-
-      - name: Generate private.txt file
-        run: |
-          echo "# 内容: Google 在中国大陆可直连的域名列表" > private.txt
-          echo "# 来源: ${custom_private}" >> private.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> private.txt
-          curl -sSL ${custom_private} | awk -F ':' '/^full:/ {printf "DOMAIN,%s\n", $2}' >> private.txt
-          curl -sSL ${custom_private} | awk -F ':' '/^domain:/ {printf "DOMAIN-SUFFIX,%s\n", $2}' >> private.txt
-
-      - name: Generate direct.txt file
-        run: |
-          echo "# 内容: 直连域名列表" > direct.txt
-          echo "# 来源: ${Loyalsoldier_direct}" >> direct.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> direct.txt
-          curl -sSL ${Loyalsoldier_direct} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(full:)([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN,$2\n"' >> direct.txt
-          curl -sSL ${Loyalsoldier_direct} | grep -Ev "^(regexp|keyword|full):" | perl -ne '/^(domain:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN-SUFFIX,$2\n"' >> direct.txt
-
-      - name: Generate proxy.txt file
-        run: |
-          echo "# 内容: 代理域名列表" > proxy.txt
-          echo "# 来源: ${Loyalsoldier_proxy}" >> proxy.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> proxy.txt
-          curl -sSL ${Loyalsoldier_proxy} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(full:)([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN,$2\n"' >> proxy.txt
-          curl -sSL ${Loyalsoldier_proxy} | grep -Ev "^(regexp|keyword|full):" | perl -ne '/^(domain:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN-SUFFIX,$2\n"' >> proxy.txt
-
-      - name: Generate reject.txt file
-        run: |
-          echo "# 内容: 广告域名列表" > reject.txt
-          echo "# 来源: ${Loyalsoldier_reject}" >> reject.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> reject.txt
-          curl -sSL ${Loyalsoldier_reject} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(domain:|full:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN-SUFFIX,$2\n"' >> reject.txt
-
-      - name: Generate gfw.txt file
-        run: |
-          echo "# 内容: GFWList 域名列表" > gfw.txt 
-          echo "# 来源: ${Loyalsoldier_gfw}" >> gfw.txt 
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> gfw.txt 
-          curl -sSL ${Loyalsoldier_gfw} | grep -Ev "^(regexp|keyword):" | perl -ne '/^(domain:|full:)?([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN-SUFFIX,$2\n"' >> gfw.txt
-
-      - name: Generate tld-not-cn.txt file
-        run: |
-          echo "# 内容: 非中国大陆使用的顶级域名列表" > tld-not-cn.txt
-          echo "# 来源: ${custom_tld_not_cn}" >> tld-not-cn.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> tld-not-cn.txt
-          curl -sSL "${custom_tld_not_cn}" | perl -ne '/^domain:([-_a-zA-Z0-9]+(\.[-_a-zA-Z0-9]+)*)/ && print "DOMAIN-SUFFIX,$1\n"' >> tld-not-cn.txt
-
-      - name: Generate cncidr.txt file
-        run: |
-          echo "# 内容: 中国大陆 IP 地址列表" > cncidr.txt
-          echo "# 来源: ${cn_cidr}" >> cncidr.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> cncidr.txt
-          curl -sSL ${cn_cidr} | perl -ne '/(.+\/\d+)/ && print "IP-CIDR,$1,no-resolve\n"' >> cncidr.txt
-
-      - name: Generate telegramcidr.txt file
-        run: |
-          echo "# 内容: Telegram 使用的 IP 地址列表" > telegramcidr.txt
-          echo "# 来源: ${telegram_cidr}" >> telegramcidr.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> telegramcidr.txt
-          curl -sSL ${telegram_cidr} | perl -ne '/(.+\/\d+)/ && print "IP-CIDR,$1,no-resolve\n"' >> telegramcidr.txt
-
-      - name: Generate lancidr.txt file
-        run: |
-          echo "# 内容: 局域网 IP 及保留 IP 地址列表" > lancidr.txt
-          echo "# 来源: ${lan_cidr}" >> lancidr.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> lancidr.txt
-          curl -sSL ${lan_cidr} | perl -ne '/(.+\/\d+)/ && print "IP-CIDR,$1,no-resolve\n"' >> lancidr.txt
+          generate_file () {
+            url=$1
+            file_name=$2
+            comment=$3
+            curl_command=$4
+            echo "# 内容: ${comment}\n# 来源: ${url}\n# 时间: $(date +%Y%m%d%H%M)" > ${file_name}
+            eval "curl -sSL ${url} | $curl_command >> ${file_name}"
+          }
           
-      - name: Generate chat.txt file
-        run: |
-          echo "# 内容: 生成式 AI 域名列表" > chat.txt
-          echo "# 来源: ${custom_chat}" >> chat.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> chat.txt
-          curl -sSL ${lan_cidr} >> chat.txt
-
+          generate_file ${custom_icloud} icloud.txt "iCloud 域名列表" \
+            $'grep -E "^(full|domain):" | awk -F ":" "{printf \\"DOMAIN-SUFFIX,%s\\\\n\\", \$2}"'
+            
+          generate_file ${felixonmars_google} google.txt "Google 在中国大陆可直连的域名列表" \
+            $'perl -ne "/^server=\\/([^\\/]+)\\/ && print \\"DOMAIN-SUFFIX,$1\\\\n\\""'
+            
+          generate_file ${felixonmars_apple} apple.txt "Apple 在中国大陆可直连的域名列表" \
+            $'perl -ne "/^server=\\/([^\\/]+)\\/ && print \\"DOMAIN-SUFFIX,$1\\\\n\\""'
+            
+          generate_file ${custom_private} private.txt "Google 在中国大陆可直连的域名列表" \
+            $'awk -F ":" "/^full:/ {printf \\"DOMAIN,%s\\\\n\\", \$2}" ; awk -F ":" "/^domain:/ {printf \\"DOMAIN-SUFFIX,%s\\\\n\\", \$2}"'
+          
+          generate_file ${Loyalsoldier_direct} direct.txt "直连域名列表" \
+            $'grep -Ev "^(regexp|keyword):" | perl -ne "/^(full:)([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN,$2\\\\n\\"" ; grep -Ev "^(regexp|keyword|full):" | perl -ne "/^(domain:)?([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN-SUFFIX,$2\\\\n\\""'
+          
+          generate_file ${Loyalsoldier_proxy} proxy.txt "代理域名列表" \
+            $'grep -Ev "^(regexp|keyword):" | perl -ne "/^(full:)([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN,$2\\\\n\\"" ; grep -Ev "^(regexp|keyword|full):" | perl -ne "/^(domain:)?([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN-SUFFIX,$2\\\\n\\""'
+          
+          generate_file ${Loyalsoldier_reject} reject.txt "广告域名列表" \
+            $'grep -Ev "^(regexp|keyword):" | perl -ne "/^(domain:|full:)?([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN-SUFFIX,$2\\\\n\\""'
+          
+          generate_file ${Loyalsoldier_gfw} gfw.txt "GFWList 域名列表" \
+            $'grep -Ev "^(regexp|keyword):" | perl -ne "/^(domain:|full:)?([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN-SUFFIX,$2\\\\n\\""'
+          
+          generate_file ${custom_tld_not_cn} tld-not-cn.txt "非中国大陆使用的顶级域名列表" \
+            $'perl -ne "/^domain:([-_a-zA-Z0-9]+(\\.[-_a-zA-Z0-9]+)*)/ && print \\"DOMAIN-SUFFIX,$1\\\\n\\""'
+          
+          generate_file ${cn_cidr} cncidr.txt "中国大陆 IP 地址列表" \
+            $'perl -ne "/(.+\\/\\d+)/ && print \\"IP-CIDR,$1,no-resolve\\\\n\\""'
+          
+          generate_file ${telegram_cidr} telegramcidr.txt "Telegram 使用的 IP 地址列表" \
+            $'perl -ne "/(.+\\/\\d+)/ && print \\"IP-CIDR,$1,no-resolve\\\\n\\""'
+          
+          generate_file ${lan_cidr} lancidr.txt "局域网 IP 及保留 IP 地址列表" \
+            $'perl -ne "/(.+\\/\\d+)/ && print \\"IP-CIDR,$1,no-resolve\\\\n\\""'
+          
+          generate_file ${custom_chat} chat.txt "生成式 AI 域名列表" $'cat'
+ 
       - name: Generate proxy-uniq.txt file
         run: |
           echo "# 内容: 去重后的代理规则集合" > proxy-uniq.txt
@@ -142,7 +96,7 @@ jobs:
           echo "# 来源: ${custom_tld_not_cn}" >> proxy-uniq.txt
           echo "# 时间: $(date +%Y%m%d%H%M)" >> proxy-uniq.txt
           cat proxy.txt gfw.txt telegram.txt tld-not-cn.txt | grep -Ev "^#" | sort | uniq >> proxy-uniq.txt
-          
+
       - name: Generate direct-uniq.txt file
         run: |
           echo "# 内容: 去重后的直连规则集合" > direct-uniq.txt
