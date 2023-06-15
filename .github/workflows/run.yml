@@ -18,16 +18,19 @@ jobs:
         run: |
           echo "RELEASE_NAME=Released on $(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
+          # Loyalsoldier
           echo "icloud=https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt" >> $GITHUB_ENV
           echo "reject=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt" >> $GITHUB_ENV
           echo "proxy=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt" >> $GITHUB_ENV
           echo "direct=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt" >> $GITHUB_ENV
           echo "gfw=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt" >> $GITHUB_ENV
-          echo "apple=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
-          echo "google=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
           echo "cn_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt" >> $GITHUB_ENV
           echo "lan_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt" >> $GITHUB_ENV
           echo "telegram_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt" >> $GITHUB_ENV
+          # felixonmars
+          echo "apple=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
+          echo "google=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
+          # gitduk
           echo "chat=https://raw.githubusercontent.com/gitduk/clash-rules/main/custom/chat.txt" >> $GITHUB_ENV
         shell: bash
 
@@ -43,18 +46,37 @@ jobs:
             eval "curl -sSL ${2} | $3"
           }
 
+          # icloud
           generate_file "iCloud 域名列表" ${icloud} \
             "grep -E '^full:' | awk -F ':' '{printf \"DOMAIN,%s\\n\", \$2}'" > icloud.txt
           generate_file "" ${icloud} \
             "grep -E '^domain:' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'" >> icloud.txt
 
+          # reject
           generate_file "广告域名列表" ${reject} \
             "sed 's/^/DOMAIN-SUFFIX,/'" > reject.txt
 
+          # proxy
           generate_file "代理域名列表" ${proxy} \
-            "grep -E '^full' | sed 's/^full:/DOMAIN,/'" > proxy.txt
+            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" > proxy.txt
           generate_file "" ${proxy} \
-            "grep -Ev '^(full|regexp)' | sed 's/^/DOMAIN-SUFFIX,/'" >> proxy.txt
+            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" >> proxy.txt
+
+          # direct
+          generate_file "直连域名列表" ${direct} \
+            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" > direct.txt
+          generate_file "" ${direct} \
+            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" >> direct.txt
+
+          # gfw
+          generate_file "gfw 域名列表" ${gfw} \
+            "sed 's/^/DOMAIN-SUFFIX,/'" > gfw.txt
+
+          # cn_cidr
+          generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
+            "grep -v ':' | sed 's|\(.*\)/\([0-9]\{1,2\}\)$|IP-CIDR,\1,no-resolve|' > cn_cidr.txt
+          generate_file "" ${cn_cidr} \
+            "grep '::' | awk -F '::' '{printf "IP-CIDR,%s,no-resolve\n",\$1}' >> cn_cidr.txt
 
       - name: Move files to publish directory
         run: |
