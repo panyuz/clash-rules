@@ -76,11 +76,11 @@ jobs:
 
           # cn_cidr
           generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
-            "sed -e 's/^/IP-CIDR,' -e 's/$/,no-resolve'" > cn_cidr.txt
+            "sed 's/^/IP-CIDR,' | sed 's/$/,no-resolve'" > cn_cidr.txt
 
           # lan_cidr
           generate_file "局域网 IP 及保留 IP 地址列表" ${lan_cidr} \
-            "sed -e 's/^/IP-CIDR,' -e 's/$/,no-resolve'" > lan_cidr.txt
+            "sed 's/^/IP-CIDR,' | sed 's/$/,no-resolve'" > lan_cidr.txt
 
           # chat
           generate_file "生成式 AI 域名列表" ${chat} "cat" > chat.txt
