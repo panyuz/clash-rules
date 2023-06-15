@@ -128,7 +128,7 @@ jobs:
           
       - name: Generate chat.txt file
         run: |
-          echo "# 内容: 局域网 IP 及保留 IP 地址列表" > chat.txt
+          echo "# 内容: 生成式 AI 域名列表" > chat.txt
           echo "# 来源: ${custom_chat}" >> chat.txt
           echo "# 时间: $(date +%Y%m%d%H%M)" >> chat.txt
           curl -sSL ${lan_cidr} >> chat.txt
