@@ -30,6 +30,7 @@ jobs:
           echo "cn_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt" >> $GITHUB_ENV
           echo "lan_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt" >> $GITHUB_ENV
           echo "telegram_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt" >> $GITHUB_ENV
+          echo "custom_chat=https://raw.githubusercontent.com/gitduk/clash-rules/main/custom/chat.txt" >> $GITHUB_ENV
         shell: bash
 
       - name: Checkout the "hidden" branch
@@ -124,6 +125,13 @@ jobs:
           echo "# 来源: ${lan_cidr}" >> lancidr.txt
           echo "# 时间: $(date +%Y%m%d%H%M)" >> lancidr.txt
           curl -sSL ${lan_cidr} | perl -ne '/(.+\/\d+)/ && print "IP-CIDR,$1,no-resolve\n"' >> lancidr.txt
+          
+      - name: Generate chat.txt file
+        run: |
+          echo "# 内容: 局域网 IP 及保留 IP 地址列表" > chat.txt
+          echo "# 来源: ${custom_chat}" >> chat.txt
+          echo "# 时间: $(date +%Y%m%d%H%M)" >> chat.txt
+          curl -sSL ${lan_cidr} >> chat.txt
 
       - name: Generate proxy-uniq.txt file
         run: |
