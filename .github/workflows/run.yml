@@ -76,7 +76,7 @@ jobs:
           generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
             "grep -v ':' | sed 's|\(.*\)/\([0-9]\{1,2\}\)$|IP-CIDR,\1,no-resolve|' > cn_cidr.txt
           generate_file "" ${cn_cidr} \
-            "grep '::' | awk -F '::' '{printf "IP-CIDR,%s,no-resolve\n",\$1}' >> cn_cidr.txt
+            "grep '::' | awk -F '::' '{printf "IP-CIDR,%s,no-resolve\n",$1}' >> cn_cidr.txt
 
       - name: Move files to publish directory
         run: |
