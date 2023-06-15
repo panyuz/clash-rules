@@ -18,20 +18,22 @@ jobs:
         run: |
           echo "RELEASE_NAME=Released on $(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           echo "TAG_NAME=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          # Loyalsoldier
-          echo "icloud=https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt" >> $GITHUB_ENV
-          echo "reject=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt" >> $GITHUB_ENV
-          echo "proxy=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt" >> $GITHUB_ENV
-          echo "direct=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt" >> $GITHUB_ENV
-          echo "gfw=https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt" >> $GITHUB_ENV
-          echo "cn_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt" >> $GITHUB_ENV
-          echo "lan_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt" >> $GITHUB_ENV
-          echo "telegram_cidr=https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/telegram.txt" >> $GITHUB_ENV
-          # felixonmars
-          echo "apple=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/apple.china.conf" >> $GITHUB_ENV
-          echo "google=https://raw.githubusercontent.com/felixonmars/dnsmasq-china-list/master/google.china.conf" >> $GITHUB_ENV
-          # gitduk
-          echo "chat=https://raw.githubusercontent.com/gitduk/clash-rules/main/custom/chat.txt" >> $GITHUB_ENV
+
+          declare -A env_names=(
+            ["icloud"]="https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt"
+            ["reject"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt"
+            ["proxy"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.tx"
+            ["direct"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt"
+            ["gfw"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt"
+            ["cn_cidr"]="https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
+            ["lan_cidr"]="https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt"
+            ["chat"]="https://raw.githubusercontent.com/gitduk/clash-rules/main/custom/chat.txt"
+          )
+
+          for env_name in "${!env_names[@]}"; do
+              env_value="${env_names[$env_name]}"
+              echo "$env_name=$env_value" >> $GITHUB_ENV
+          done
         shell: bash
 
       - name: Checkout the "hidden" branch
@@ -43,7 +45,7 @@ jobs:
         run: |
           generate_file () {
             echo "# ${1}"
-            eval "curl -sSL ${2} | $3"
+            eval "curl -sSL ${2} | grep -Ev "^#" | $3"
           }
 
           # icloud
@@ -74,9 +76,14 @@ jobs:
 
           # cn_cidr
           generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
-            "grep -v ':' | sed 's|\(.*\)/\([0-9]\{1,2\}\)$|IP-CIDR,\1,no-resolve|' > cn_cidr.txt
-          generate_file "" ${cn_cidr} \
-            "grep '::' | awk -F '::' '{printf "IP-CIDR,%s,no-resolve\n",$1}' >> cn_cidr.txt
+            "sed -e 's/^/IP-CIDR,' -e 's/$/,no-resolve'" > cn_cidr.txt
+
+          # lan_cidr
+          generate_file "局域网 IP 及保留 IP 地址列表" ${lan_cidr} \
+            "sed -e 's/^/IP-CIDR,' -e 's/$/,no-resolve'" > lan_cidr.txt
+
+          # chat
+          generate_file "生成式 AI 域名列表" ${chat} "cat" > chat.txt
 
       - name: Move files to publish directory
         run: |
