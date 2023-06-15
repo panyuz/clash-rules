@@ -39,44 +39,22 @@ jobs:
       - name: Generate txt file
         run: |
           generate_file () {
-            url=$1
-            file=$2
-            comment=$3
-            curl_command=$4
-            echo "# 内容: ${comment}" > ${file}
-            echo "# 来源: ${url}" >> ${file}
-            echo "# 时间: $(date +%Y%m%d%H%M)" >> ${file}
-            eval "curl -sSL ${url} | $curl_command >> ${file}"
+            echo "# ${1}"
+            eval "curl -sSL ${2} | $3"
           }
-          
-          generate_file ${icloud} icloud.txt "iCloud 域名列表" \
-            "grep -E '^(full|domain):' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'"
 
-          generate_file ${reject} reject.txt "广告域名列表" \
-            "sed 's/^/DOMAIN-SUFFIX,/'"
- 
-      - name: Generate proxy-uniq.txt file
-        run: |
-          echo "# 内容: 去重后的代理规则集合" > proxy-uniq.txt
-          echo "# 来源: ${Loyalsoldier_proxy}" >> proxy-uniq.txt
-          echo "# 来源: ${Loyalsoldier_gfw}" >> proxy-uniq.txt
-          echo "# 来源: ${telegram_cidr}" >> proxy-uniq.txt
-          echo "# 来源: ${custom_tld_not_cn}" >> proxy-uniq.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> proxy-uniq.txt
-          cat proxy.txt gfw.txt telegram.txt tld-not-cn.txt | grep -Ev "^#" | sort | uniq >> proxy-uniq.txt
+          generate_file "iCloud 域名列表" ${icloud} \
+            "grep -E '^full:' | awk -F ':' '{printf \"DOMAIN,%s\\n\", \$2}'" > icloud.txt
+          generate_file "" ${icloud} \
+            "grep -E '^domain:' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'" >> icloud.txt
 
-      - name: Generate direct-uniq.txt file
-        run: |
-          echo "# 内容: 去重后的直连规则集合" > direct-uniq.txt
-          echo "# 来源: ${Loyalsoldier_direct}" >> direct-uniq.txt
-          echo "# 来源: ${lan_cidr}" >> direct-uniq.txt
-          echo "# 来源: ${cn_cidr}" >> direct-uniq.txt
-          echo "# 来源: ${custom_private}" >> direct-uniq.txt
-          echo "# 来源: ${felixonmars_apple}" >> direct-uniq.txt
-          echo "# 来源: ${felixonmars_google}" >> direct-uniq.txt
-          echo "# 来源: ${custom_icloud}" >> direct-uniq.txt
-          echo "# 时间: $(date +%Y%m%d%H%M)" >> direct-uniq.txt
-          cat direct.txt lancidr.txt cncidr.txt private.txt apple.txt google.txt icloud.txt | grep -Ev "^#" | sort | uniq >> direct-uniq.txt
+          generate_file "广告域名列表" ${reject} \
+            "sed 's/^/DOMAIN-SUFFIX,/'" > reject.txt
+
+          generate_file "代理域名列表" ${proxy} \
+            "grep -E '^full' | sed 's/^full:/DOMAIN,/'" > proxy.txt
+          generate_file "" ${proxy} \
+            "grep -Ev '^(full|regexp)' | sed 's/^/DOMAIN-SUFFIX,/'" >> proxy.txt
 
       - name: Move files to publish directory
         run: |
