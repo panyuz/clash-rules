@@ -52,6 +52,8 @@ jobs:
           generate_file ${custom_icloud} icloud.txt "iCloud 域名列表" \
             $'grep -E "^(full|domain):" | awk -F ":" "{printf \\"DOMAIN-SUFFIX,%s\\\\n\\", \$2}"'
 
+          generate_file ${felixonmars_google} google.txt "Google 在中国大陆可直连的域名列表" \
+            $'awk -F'[/ ]' '{ print "DOMAIN-SUFFIX," $2 }''
  
       - name: Generate proxy-uniq.txt file
         run: |
