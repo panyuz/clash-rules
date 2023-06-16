@@ -50,45 +50,45 @@ jobs:
 
           # icloud
           generate_file "iCloud 域名列表" ${icloud} \
-            "grep -E '^full:' | awk -F ':' '{printf \"DOMAIN,%s\\n\", \$2}'" > icloud.txt
+            "grep -E '^full:' | awk -F ':' '{printf \"DOMAIN,%s\\n\", \$2}'" | tee icloud.txt >> direct-uniq.txt
           generate_file "" ${icloud} \
-            "grep -E '^domain:' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'" >> icloud.txt
+            "grep -E '^domain:' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'" |tee -a icloud.txt >> direct-uniq.txt
 
           # reject
           generate_file "广告域名列表" ${reject} \
-            "sed 's/^/DOMAIN-SUFFIX,/'" > reject.txt
+            "sed 's/^/DOMAIN-SUFFIX,/'" | tee reject.txt >> reject-uniq.txt 
 
           # proxy
           generate_file "代理域名列表" ${proxy} \
-            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" > proxy.txt
+            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" | tee proxy.txt >> proxy-uniq.txt
           generate_file "" ${proxy} \
-            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" >> proxy.txt
+            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" | tee -a proxy.txt >> proxy-uniq.txt
 
           # direct
           generate_file "直连域名列表" ${direct} \
-            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" > direct.txt
+            "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" | tee direct.txt >> direct-uniq.txt
           generate_file "" ${direct} \
-            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" >> direct.txt
+            "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" | tee -a direct.txt >> direct-uniq.txt
 
           # gfw
           generate_file "gfw 域名列表" ${gfw} \
-            "sed 's/^/DOMAIN-SUFFIX,/'" > gfw.txt
+            "sed 's/^/DOMAIN-SUFFIX,/'" | tee gfw.txt >> proxy-uniq.txt
 
           # cn_cidr
-          #generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
-          #  "sed 's/^/IP-CIDR,' | sed 's/\$/,no-resolve'" > cn_cidr.txt
+          generate_file "中国大陆 IP 地址列表" ${cn_cidr} \
+            "sed 's/^/IP-CIDR,/; s/\$/,no-resolve/'" | tee cn_cidr.txt >> direct-uniq.txt
 
           # lan_cidr
-          #generate_file "局域网 IP 及保留 IP 地址列表" ${lan_cidr} \
-          #  "sed 's/^/IP-CIDR,' | sed 's/\$/,no-resolve'" > lan_cidr.txt
+          generate_file "局域网 IP 及保留 IP 地址列表" ${lan_cidr} \
+            "sed 's/^/IP-CIDR,/; s/\$/,no-resolve/'" | tee lan_cidr.txt >> direct-uniq.txt
 
           # chat
-          generate_file "生成式 AI 域名列表" ${chat} "cat" > chat.txt
+          generate_file "生成式 AI 域名列表" ${chat} "cat" | tee chat.txt >> proxy-uniq.txt
 
       - name: Move files to publish directory
         run: |
           mkdir -p publish
-          cp *.txt ./publish/
+          mv *.txt ./publish/
 
       - name: Release and upload assets
         uses: softprops/action-gh-release@v1
