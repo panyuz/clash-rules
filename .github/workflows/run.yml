@@ -22,7 +22,7 @@ jobs:
           declare -A env_names=(
             ["icloud"]="https://raw.githubusercontent.com/Loyalsoldier/domain-list-custom/release/icloud.txt"
             ["reject"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/reject-list.txt"
-            ["proxy"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.tx"
+            ["proxy"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/proxy-list.txt"
             ["direct"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/direct-list.txt"
             ["gfw"]="https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt"
             ["cn_cidr"]="https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
