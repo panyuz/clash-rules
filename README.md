@@ -35,9 +35,9 @@
 
 | 建议 | 文件 | 国内访问链接 |
 | :---: | --- | --- |
-| 代理 | [去重代理域名列表 proxy-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt |
-| 直连 | [去重直连域名列表 direct-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt |
-| REJECT | [去重直连域名列表 reject-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject-uniq.txt |
+| 代理 | [代理去重域名列表 proxy-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy-uniq.txt |
+| 直连 | [直连去重域名列表 direct-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct-uniq.txt |
+| REJECT | [广告去重域名列表 reject-uniq.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/reject-uniq.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/reject-uniq.txt |
 
 ## 使用方式
 
