@@ -44,14 +44,14 @@ jobs:
       - name: Generate txt file
         run: |
           generate_file () {
-            echo "# ${1}"
+            echo "# ${1}: ${2}"
             eval "curl -sSL ${2} | grep -Ev "^#" | $3"
           }
 
           # icloud
           generate_file "iCloud 域名列表" ${icloud} \
             "grep -E '^full:' | awk -F ':' '{printf \"DOMAIN,%s\\n\", \$2}'" | tee icloud.txt >> direct-uniq.txt
-          generate_file "" ${icloud} \
+          generate_file "iCloud 域名列表" ${icloud} \
             "grep -E '^domain:' | awk -F ':' '{printf \"DOMAIN-SUFFIX,%s\\n\", \$2}'" |tee -a icloud.txt >> direct-uniq.txt
 
           # reject
@@ -61,13 +61,13 @@ jobs:
           # proxy
           generate_file "代理域名列表" ${proxy} \
             "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" | tee proxy.txt >> proxy-uniq.txt
-          generate_file "" ${proxy} \
+          generate_file "代理域名列表" ${proxy} \
             "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" | tee -a proxy.txt >> proxy-uniq.txt
 
           # direct
           generate_file "直连域名列表" ${direct} \
             "grep -E '^full:' | sed 's/^full:/DOMAIN,/'" | tee direct.txt >> direct-uniq.txt
-          generate_file "" ${direct} \
+          generate_file "直连域名列表" ${direct} \
             "grep -Ev '^(full|regexp):' | sed 's/^/DOMAIN-SUFFIX,/'" | tee -a direct.txt >> direct-uniq.txt
 
           # gfw
