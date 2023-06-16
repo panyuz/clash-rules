@@ -85,6 +85,11 @@ jobs:
           # chat
           generate_file "生成式 AI 域名列表" ${chat} "cat" | tee chat.txt >> proxy-uniq.txt
 
+          # sort and uniq
+          sort -u direct-uniq.txt -o direct-uniq.txt
+          sort -u reject-uniq.txt -o reject-uniq.txt
+          sort -u proxy-uniq.txt -o proxy-uniq.txt
+
       - name: Move files to publish directory
         run: |
           mkdir -p publish
