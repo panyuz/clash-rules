@@ -18,10 +18,8 @@
 | 建议 | 文件 | 国内访问链接 |
 | :---: | --- | --- |
 | 直连 | [直连域名列表 direct.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/direct.txt |
-| 直连 | [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt |
-| 直连 | [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt |
-| 直连 | [Apple 在中国大陆可直连的域名列表 apple.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/apple.txt |
-| 直连 | [Google 在中国大陆可直连的域名列表 google.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/google.txt |
+| 直连 | [局域网 IP 及保留 IP 地址列表 lancidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/lancidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/lan_cidr.txt |
+| 直连 | [中国大陆 IP 地址列表 cncidr.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/cncidr.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/cn_cidr.txt |
 | 直连 | [iCloud 域名列表 icloud.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/icloud.txt |
 | 代理 | [代理域名列表 proxy.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/proxy.txt |
 | 代理 | [GFWList 域名列表 gfw.txt](https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt) | https://ghproxy.com/https://raw.githubusercontent.com/gitduk/clash-rules/release/gfw.txt |
