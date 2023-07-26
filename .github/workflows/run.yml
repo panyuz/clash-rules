@@ -28,6 +28,7 @@ jobs:
             ["cn_cidr"]="https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/cn.txt"
             ["lan_cidr"]="https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/private.txt"
             ["chat"]="https://raw.githubusercontent.com/gitduk/clash-rules/main/custom/chat.txt"
+            ["openai"]="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list"
           )
 
           for env_name in "${!env_names[@]}"; do
@@ -84,6 +85,9 @@ jobs:
 
           # chat
           generate_file "生成式 AI 域名列表" ${chat} "cat" | tee chat.txt >> proxy-uniq.txt
+
+          # openai
+          generate_file "openai 域名列表" ${openai} "cat" | tee openai.txt >> proxy-uniq.txt
 
           # sort and uniq
           sort -u direct-uniq.txt -o direct-uniq.txt
